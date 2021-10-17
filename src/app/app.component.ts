@@ -5,7 +5,7 @@ import { NavigationEnd} from '@angular/router';
   
 const URL_PATH_TITLES: { [key: string]: string } = {
   "transactions": "Transactions",
-  "transaction-submit": "Transaction Submit",
+  "user": "Users",
   "registration": "Registration",
   "confirmation": "Confirmation",
   // "": "",

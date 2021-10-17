@@ -20,6 +20,7 @@ import { UserDisplayComponent } from "./components/user-display/user-display.com
 // Services
 import { UserService } from "./user.service";
 import { SignInFormComponent } from "./components/sign-in-form/sign-in-form.component";
+import { UserUrls } from "./user-urls";
 
 const maskConfig: Partial<IConfig> = {
     validation: false
@@ -34,19 +35,19 @@ const routes = [
                 component: UserNavigationComponent
             },
             {
-                path: 'register',
+                path: UserUrls.REGISTRATION.substr(1),
                 component: RegistrationComponent
             },
             {
-                path: 'sign-in',
+                path: UserUrls.LOGIN.substr(1),
                 component: SignInComponent
             },
             {
-                path: 'search',
+                path: UserUrls.SEARCH.substr(1),
                 component: ViewComponent
             },
             {
-                path: 'view/:id',
+                path: UserUrls.VIEW.substr(1) + '/:id',
                 component: ViewByIdComponent
             },
             // {
