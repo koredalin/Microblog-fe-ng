@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from "@angular/common/http";
 import { UserRegisterInterface } from "./models/user-register.interface";
@@ -8,23 +8,28 @@ import { UserLoginInterface } from "./models/user-login.interface";
 import { UserSearchByNameInterface } from "./models/user-search-by-name.interface";
 
 // API links
-const MICRO_BLOG_API = 'http://localhost/api';
-const API_USER_REGISTRATION = '/v1/user/register';
-const API_ALL_USERS = '/v1/user';
-const API_SIGN_IN = '/login';
-const API_USER_BY_NAME = '/v1/user-by-name';
-const API_USER_DELETE = '/delete';
-const API_TRANSACTION_DETAILED_INFO = '/transaction-detailed-info';
+const MICRO_BLOG_API = 'http://localhost/microblog/public/api';
+const API_USERS = '/v1/user';
+const API_USER_REGISTRATION = API_USERS + '/v1/user/register';
+const API_SIGN_IN = API_USERS + '/login';
+const API_USER_BY_NAME = API_USERS + '/v1/user-by-name';
+const API_USER_DELETE = API_USERS;
 
 @Injectable()
-export class UserService {
+export class UserService implements OnInit{
     loggedUserId: number | null = null;
     bearerToken: string = '';
 
     constructor(
         private router: Router,
         private httpClient: HttpClient
-    ) { }
+    ) {
+        this.loggedUserId = parseInt(localStorage.getItem('loggedUserId') || '0');
+        this.bearerToken = localStorage.getItem('bearerToken') || '';
+    }
+
+    ngOnInit() {
+    }
 
     registration(signUpForm: UserRegisterInterface): Observable<UserResponseInterface> {
         let url = MICRO_BLOG_API + API_USER_REGISTRATION;
@@ -38,17 +43,17 @@ export class UserService {
         let url = MICRO_BLOG_API + API_SIGN_IN;
 
         return this.httpClient
-            .put<UserResponseInterface>(url, signInForm, this.getDefaultHttpRequestOptions());
+            .post<UserResponseInterface>(url, signInForm, this.getDefaultHttpRequestOptions());
     }
 
     getAllUsers(): Observable<UserRegisterInterface[]> {
         return this.httpClient
-            .get<UserRegisterInterface[]>(MICRO_BLOG_API + API_ALL_USERS);
+            .get<UserRegisterInterface[]>(MICRO_BLOG_API + API_USERS);
     }
 
     getUserByUrlUserId(): Observable<UserResponseInterface> {
         let userId = this.getUrlEnd(this.router.url);
-        let url = MICRO_BLOG_API + API_ALL_USERS + '/' + userId;
+        let url = MICRO_BLOG_API + API_USERS + '/' + userId;
 
         return this.httpClient
             .get<UserResponseInterface>(url, this.getDefaultHttpRequestOptions());
@@ -70,6 +75,14 @@ export class UserService {
             .delete<UserResponseInterface>(url, this.getDefaultHttpRequestOptions());
     }
 
+    setLoggedInUserId(id: number | null) {
+        this.loggedUserId = id;
+    }
+
+    setBearerToken(token: string) {
+        this.bearerToken = token;
+    }
+
     private getUrlEnd(urlStr: string): string {
         let urlArr = urlStr.split("/") || [];
 
@@ -78,7 +91,8 @@ export class UserService {
 
     private getDefaultHttpRequestHeaders(): HttpHeaders {
         let headers = new HttpHeaders({
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": this.bearerToken
         });
         
         return headers;

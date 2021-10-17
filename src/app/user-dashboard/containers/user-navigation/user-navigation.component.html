@@ -17,6 +17,14 @@
             <a href="{{userSearchUrl}}">User search</a>
         </li>
 
+        <li *ngIf="loggedUserId || 0 > 1">
+            <a
+                role="button"
+                class="anchor"
+                (click)="deleteUser()">
+                Delete yourself
+            </a>
+        </li>
         <li>
             <a href="{{goBackUrl}}">&lsaquo; Go back</a>
         </li>

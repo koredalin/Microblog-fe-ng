@@ -23,7 +23,7 @@ export class ViewByIdComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private transactionService: UserService
+        private userService: UserService
     ) {}
     
 
@@ -33,12 +33,11 @@ export class ViewByIdComponent implements OnInit, OnDestroy {
     }
 
     setInfo() {
-        this.transactionService
+        this.userService
             .getUserByUrlUserId()
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {
-                    console.log(responseContent);
                     this.response = responseContent;
                 },
                 (error) => {

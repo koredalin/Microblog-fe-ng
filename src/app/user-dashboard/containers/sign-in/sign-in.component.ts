@@ -22,7 +22,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private transactionService: UserService
+        private userService: UserService
     ) {}
     
 
@@ -35,15 +35,15 @@ export class SignInComponent implements OnInit, OnDestroy {
     }
 
     onSignIn(event: UserLoginInterface) {
-        this.transactionService
+        this.userService
             .signIn(event)
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {
                     console.log(responseContent);
                     this.router.navigate([UserUrls.HOME + UserUrls.VIEW + '/' + responseContent.response?.user_id || '']);
-                    this.transactionService.loggedUserId = responseContent.response?.user_id || 0;
-                    this.transactionService.bearerToken = 'Bearer ' + responseContent.response?.jwt || '';
+                    localStorage.setItem('loggedUserId', (responseContent.response?.user_id || 0).toString());
+                    localStorage.setItem('bearerToken', 'Bearer ' + responseContent.response?.jwt || '');
                 },
                 (error) => {
                   this.signInError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
