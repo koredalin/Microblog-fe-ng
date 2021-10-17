@@ -46,9 +46,9 @@ export class UserService implements OnInit{
             .post<UserResponseInterface>(url, signInForm, this.getDefaultHttpRequestOptions());
     }
 
-    getAllUsers(): Observable<UserRegisterInterface[]> {
+    getAllUsers(): Observable<UserResponseInterface> {
         return this.httpClient
-            .get<UserRegisterInterface[]>(MICRO_BLOG_API + API_USERS);
+            .get<UserResponseInterface>(MICRO_BLOG_API + API_USERS, this.getDefaultHttpRequestOptions());
     }
 
     getUserByUrlUserId(): Observable<UserResponseInterface> {
