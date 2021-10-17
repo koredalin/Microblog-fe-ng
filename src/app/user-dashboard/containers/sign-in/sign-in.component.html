@@ -1,0 +1,24 @@
+<h2>One Time Password (OTP)</h2>
+
+<div>
+    <div>
+        {{ signInForm | json }}
+    </div>
+
+    <span>
+        <button
+            class="btn btn-outline-info ml-3"
+            (click)="goBack()">
+            &lsaquo; Go back
+        </button>
+        <div class="invalid-feedback">{{ signInError }}</div>
+    </span>
+
+    <sign-in-form
+        [detail]="signInForm"
+        [signInError]="signInError"
+        (update)="onSignIn($event)">
+
+    </sign-in-form>
+
+</div>

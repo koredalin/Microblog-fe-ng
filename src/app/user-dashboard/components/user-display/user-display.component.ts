@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { UserResponseInterface } from "../../models/user-response.interface";
+import { UserDbInterface } from "../../models/user-db.interface";
 
 @Component({
     selector: 'user-display',
@@ -7,12 +7,9 @@ import { UserResponseInterface } from "../../models/user-response.interface";
     templateUrl: './user-display.component.html'
 })
 
-export class InfoDisplayComponent {
+export class UserDisplayComponent {
     @Input()
-    detail: UserResponseInterface | null;
-
-    @Input()
-    infoError: string = '';
+    detail: UserDbInterface;
 
     // @Output()
     // update: EventEmitter<TransactionInfoInterface> = new EventEmitter<TransactionInfoInterface>();

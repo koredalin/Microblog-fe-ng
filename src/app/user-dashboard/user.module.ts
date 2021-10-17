@@ -8,18 +8,18 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
 // Containers
 
 // Components
-import { TransactionSubmitComponent } from "./containers/user-submit/user-submit.component";
+import { UserNavigationComponent } from "./containers/user-navigation/user-navigation.component";
 import { RegistrationComponent } from "./containers/registration/registration.component";
 import { SignUpFormComponent } from "./components/sign-up-form/sign-up-form.component";
-import { ConfirmationComponent } from "./containers/confirmation/confirmation.component";
-import { ConfirmationFormComponent } from "./components/confirmation-form/confirmation-form.component";
+import { SignInComponent } from "./containers/sign-in/sign-in.component";
 import { ViewComponent } from "./containers/view/view.component";
 import { SearchFormComponent } from "./components/search-form/search-form.component";
 import { ViewByIdComponent } from "./containers/view-by-id/view-by-id.component";
-import { InfoDisplayComponent } from "./components/user-display/user-display.component";
+import { UserDisplayComponent } from "./components/user-display/user-display.component";
 
 // Services
 import { UserService } from "./user.service";
+import { SignInFormComponent } from "./components/sign-in-form/sign-in-form.component";
 
 const maskConfig: Partial<IConfig> = {
     validation: false
@@ -27,26 +27,26 @@ const maskConfig: Partial<IConfig> = {
 
 const routes = [
     {
-        "path": 'transaction-submit',
+        "path": 'user',
         "children": [
             {
                 path: '',
-                component: TransactionSubmitComponent
+                component: UserNavigationComponent
             },
             {
                 path: 'registration',
                 component: RegistrationComponent
             },
             {
-                path: 'confirmation/:transactionId',
-                component: ConfirmationComponent
+                path: 'sign-in',
+                component: SignInComponent
             },
             {
-                path: 'info',
+                path: 'view',
                 component: ViewComponent
             },
             {
-                path: 'info/:transactionId',
+                path: 'view/:id',
                 component: ViewByIdComponent
             },
             // {
@@ -60,16 +60,16 @@ const routes = [
 @NgModule({
     declarations: [
         // Containers
+        UserNavigationComponent,
         RegistrationComponent,
-        ConfirmationComponent,
+        SignInComponent,
         ViewComponent,
         ViewByIdComponent,
         // Components
-        // TransactionDetailComponent,
-        SignUpFormComponent,
-        ConfirmationFormComponent,
         SearchFormComponent,
-        InfoDisplayComponent
+        SignUpFormComponent,
+        SignInFormComponent,
+        UserDisplayComponent
     ],
     imports: [
         CommonModule,

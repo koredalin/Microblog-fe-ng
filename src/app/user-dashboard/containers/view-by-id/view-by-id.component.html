@@ -11,11 +11,10 @@
     </span>
 
     <h3>Single Transaction Info</h3>
-    <info-viewer
-        [detail]="response"
-        [infoError]="infoError">
+    <user-display
+        [detail]="response?.response?.resultOne || emptyUserDbModel">
 
-    </info-viewer>
+    </user-display>
 
     <!-- {{ response | json }} -->
 

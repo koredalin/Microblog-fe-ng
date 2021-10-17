@@ -16,17 +16,18 @@
     <h3>Single User Info</h3>
     <search-form
         [detail]="userData"
-        [infoError]="infoError"
+        [searchError]="searchError"
         (update)="onGetInfo($event)">
 
     </search-form>
 
     <!-- {{ response | json }} -->
 
-    <user-display
-        [detail]="response"
-        [infoError]="infoError">
+    <div *ngFor="let user of response?.response?.resultAll">
+        <user-display
+            [detail]="user">
 
-    </user-display>
+        </user-display>
+    </div>
 
 </div>

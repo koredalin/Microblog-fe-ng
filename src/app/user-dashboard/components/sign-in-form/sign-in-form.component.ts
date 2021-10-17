@@ -1,27 +1,34 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { UserDbInterface } from "../../models/user-db.interface";
+import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 import { UserLoginInterface } from "../../models/user-login.interface";
-import { UserSearchByNameInterface } from "../../models/user-search-by-name.interface";
 
 @Component({
     selector: 'sign-in-form',
     styleUrls: ['sign-in-form.component.scss'],
-   templateUrl: './sign-in-form.component.html'
+    templateUrl: './sign-in-form.component.html'
 })
 
-export class SignInFormComponent {
+export class SignInFormComponent implements OnInit {
     @Input()
     detail: UserLoginInterface;
 
     @Input()
-    infoError: string = '';
+    signInError: string = '';
 
     @Output()
-    update: EventEmitter<UserSearchByNameInterface> = new EventEmitter<UserSearchByNameInterface>();
+    update: EventEmitter<UserLoginInterface> = new EventEmitter<UserLoginInterface>();
 
     constructor() {}
 
-    handleSubmit(transaction: UserSearchByNameInterface, isValid: boolean | null) {
+    
+    ngOnInit() {
+        this.detail = {
+            email: '',
+            password: ''
+        };
+        this.signInError = '';
+    }
+
+    handleSubmit(transaction: UserLoginInterface, isValid: boolean | null) {
         if (isValid) {
             this.update.emit(transaction);
         }

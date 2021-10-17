@@ -4,7 +4,7 @@ import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { UserService } from "../../user.service";
 import { UserResponseInterface } from "../../models/user-response.interface";
-import { UserUrls } from "../../user-urls.component";
+import { UserUrls } from "../../user-urls";
 import { UserSearchByNameInterface } from "../../models/user-search-by-name.interface";
 
 @Component({
@@ -14,9 +14,9 @@ import { UserSearchByNameInterface } from "../../models/user-search-by-name.inte
 })
 
 export class ViewComponent implements OnInit, OnDestroy {
-    userData: UserSearchByNameInterface | null = null;
-    infoError: string = '';
-    response: UserResponseInterface | null = null;
+    userData: UserSearchByNameInterface;
+    searchError: string = '';
+    response: UserResponseInterface;
     private ngUnsubscribe = new Subject();
 
     constructor(
@@ -27,22 +27,25 @@ export class ViewComponent implements OnInit, OnDestroy {
     
 
     ngOnInit() {
-        this.infoError = '';
-        this.response = null;
+        this.searchError = '';
+        this.response = {
+            response: {},
+            arguments: {}
+        };
     }
 
     onGetInfo(event: UserSearchByNameInterface) {
-        // this.userService
-        //     .getTransaction(event)
-        //     .pipe(takeUntil(this.ngUnsubscribe))
-        //     .subscribe(
-        //         (responseContent: UserResponseInterface) => {
-        //             this.response = responseContent;
-        //         },
-        //         (error) => {
-        //           this.infoError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
-        //         }
-        //     );
+        this.userService
+            .getUserByName(event)
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe(
+                (responseContent: UserResponseInterface) => {
+                    this.response = responseContent;
+                },
+                (error) => {
+                  this.searchError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
+                }
+            );
     }
 
     goBack() {

@@ -5,7 +5,7 @@ import { Subject } from "rxjs";
 import { UserService } from "../../user.service";
 import { UserRegisterInterface } from "../../models/user-register.interface";
 import { UserResponseInterface } from "../../models/user-response.interface";
-import { UserUrls } from "../../user-urls.component";
+import { UserUrls } from "../../user-urls";
 
 @Component({
     selector: 'registration',
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {
-                    this.router.navigate([UserUrls.HOME+UserUrls.LOGIN+'/'+(responseContent.response.user_id || '')]);
+                    this.router.navigate([UserUrls.HOME+UserUrls.REGISTRATION]);
                     //this.transaction = Object.assign({}, this.transaction, data);
                 },
                 (error) => {

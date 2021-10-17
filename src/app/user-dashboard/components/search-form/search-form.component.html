@@ -3,8 +3,8 @@
     <!-- {{ infoForm.value | json }} -->
 
 <form
-    (ngSubmit)="handleSubmit(infoForm.value, infoForm.valid)"
-    #infoForm="ngForm"
+    (ngSubmit)="handleSubmit(searchForm.value, searchForm.valid)"
+    #searchForm="ngForm"
     novalidate>
 
     <fieldset>
@@ -54,13 +54,13 @@
             </div>
         </div>
     </div>
-    <div class="text-danger">{{ infoError }}</div>
+    <div class="text-danger">{{ searchError }}</div>
 
     <div class="form-group">
         <button
             type="submit"
             class="btn btn-primary mt-4"
-            [disabled]="infoForm.invalid">
+            [disabled]="searchForm.invalid">
             <span>
                 Transaction review
             </span>

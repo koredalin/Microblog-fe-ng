@@ -4,20 +4,19 @@ import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { UserService } from "../../user.service";
 import { UserResponseInterface } from "../../models/user-response.interface";
-import { UserEmptyModels } from "../../models/user-empty-models";
-import { UserDbInterface } from "../../models/user-db.interface";
+import { UserUrls } from "../../user-urls";
+import { UserLoginInterface } from "../../models/user-login.interface";
 
 @Component({
-    selector: 'view-by-id',
+    selector: 'sign-in',
     styleUrls: [],
-    templateUrl: './view-by-id.component.html'
+    templateUrl: './sign-in.component.html'
 })
 
 
-export class ViewByIdComponent implements OnInit, OnDestroy {
-    infoError: string = '';
-    response: UserResponseInterface;
-    emptyUserDbModel: UserDbInterface = UserEmptyModels.DB_INTERFACE;
+export class SignInComponent implements OnInit, OnDestroy {
+    signInForm: UserLoginInterface;
+    signInError: string = '';
     private ngUnsubscribe = new Subject();
 
     constructor(
@@ -28,27 +27,32 @@ export class ViewByIdComponent implements OnInit, OnDestroy {
     
 
     ngOnInit() {
-        this.infoError = '';
-        this.setInfo();
+        this.signInForm = {
+            email: '',
+            password: ''
+        };
+        this.signInError = '';
     }
 
-    setInfo() {
+    onSignIn(event: UserLoginInterface) {
         this.transactionService
-            .getUserByUrlUserId()
+            .signIn(event)
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {
                     console.log(responseContent);
-                    this.response = responseContent;
+                    this.router.navigate([UserUrls.HOME + UserUrls.VIEW + '/' + responseContent.response?.user_id || '']);
+                    this.transactionService.loggedUserId = responseContent.response?.user_id || 0;
+                    this.transactionService.bearerToken = 'Bearer ' + responseContent.response?.jwt || '';
                 },
                 (error) => {
-                  this.infoError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
+                  this.signInError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
                 }
             );
     }
 
     goBack() {
-        this.router.navigate(['/transactions']);
+        this.router.navigate([UserUrls.HOME]);
     }
     
     ngOnDestroy() {
