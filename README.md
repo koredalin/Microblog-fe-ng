@@ -1,14 +1,13 @@
-# One-Time Password (OTP)
+# Micro blog - frontend
 
-## Front end Angular web app
+## Micro blog frontend. Implemented with Angular.
 
-#### [Wikipedia definition](https://en.wikipedia.org/wiki/One-time_password)
+The idea came from an interview.
 
-The idea came from an interview where I've had to make such an web app without a framework.
-
-Please, review and the [back end PHP Rest API](https://github.com/koredalin/phone-number-validator/).
+Please, review and the [back end PHP Rest API](https://github.com/koredalin/Microblog/).
 
 ### Used technologies
-* node.js,
-* Angular CLI,
-* Bootstrap /CSS library/.
+* [node.js](https://nodejs.org/en/),
+* [Angular CLI](https://angular.io/),
+* [Bootstrap /CSS library/](https://getbootstrap.com/).
+* [Bootswatch themes](https://bootswatch.com)
