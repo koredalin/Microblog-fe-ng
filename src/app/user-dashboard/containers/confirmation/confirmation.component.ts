@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { TransactionSubmitService } from "../../transaction-submit.service";
+import { UserService } from "../../user.service";
 import { ConfirmationCodeInterface } from "../../models/confirmation-code.interface";
-import { ResponseInterface } from "../../models/response.interface";
+import { UserResponseInterface } from "../../models/user-response.interface";
 import { UserUrls } from "../../user-urls.component";
 
 @Component({
@@ -24,7 +24,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private transactionService: TransactionSubmitService
+        private transactionService: UserService
     ) {}
     
 
@@ -39,7 +39,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
             .confirmation(event)
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
-                (responseContent: ResponseInterface) => {
+                (responseContent: UserResponseInterface) => {
                     console.log(responseContent);
                     if (responseContent.response.transactionStatus === 'confirmed') {
                         this.router.navigate([UserUrls.HOME + UserUrls.VIEW + '/' + responseContent.response?.transactionId || '']);
@@ -58,7 +58,7 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
             .reset()
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
-                (responseContent: ResponseInterface) => {
+                (responseContent: UserResponseInterface) => {
                     if (responseContent.response.transactionStatus === 'confirmed') {
                         this.confirmationError = responseContent.response.error || '';
                     } else {

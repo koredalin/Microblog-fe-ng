@@ -1,6 +1,6 @@
 import { UserDbInterface } from "./user-db.interface";
 
-export interface ResponseInterface {
+export interface UserResponseInterface {
     "response": {
         message?: string,
         user_id?: number,

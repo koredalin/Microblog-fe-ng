@@ -2,12 +2,12 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { UserResponseInterface } from "../../models/user-response.interface";
 
 @Component({
-    selector: 'user-viewer',
-    styleUrls: ['user-viewer.component.scss'],
-    templateUrl: './user-viewer.component.html'
+    selector: 'user-display',
+    styleUrls: ['user-display.component.scss'],
+    templateUrl: './user-display.component.html'
 })
 
-export class InfoViewerComponent {
+export class InfoDisplayComponent {
     @Input()
     detail: UserResponseInterface | null;
 

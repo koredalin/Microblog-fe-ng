@@ -1,11 +1,11 @@
 <h3>Transaction Registration</h3>
 <div>
     
-    {{ registrationForm.value | json }}
+    {{ signUpForm.value | json }}
 
 <form
-    (ngSubmit)="handleSubmit(registrationForm.value, registrationForm.valid)"
-    #registrationForm="ngForm"
+    (ngSubmit)="handleSubmit(signUpForm.value, signUpForm.valid)"
+    #signUpForm="ngForm"
     novalidate>
 
     <fieldset>
@@ -98,7 +98,7 @@
     <button
         type="submit"
         class="btn btn-primary mt-4"
-        [disabled]="registrationForm.invalid">
+        [disabled]="signUpForm.invalid">
 
         <span>
             Create transaction

@@ -1,0 +1,69 @@
+<div>
+    
+    <!-- {{ signInForm.value | json }} -->
+
+<form
+    (ngSubmit)="handleSubmit(signInForm.value, signInForm.valid)"
+    #signInForm="ngForm"
+    novalidate>
+
+    <fieldset>
+
+    <div class="form-group">
+
+        <div class="form-group">
+            <label for="email" class="form-label mt-4">Email address</label>
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                [ngClass]="{'is-invalid': ((email.errors?.required && email.dirty) || (email.errors?.pattern)) }"
+                required
+                pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                #email="ngModel"
+                [ngModel]="detail?.email">
+            <div *ngIf="email.errors?.required && email.dirty" class="invalid-feedback">
+                Transaction email is required!
+            </div>
+            <div *ngIf="email.errors?.pattern" class="invalid-feedback">
+                Please, enter a valid email address!
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label for="password" class="form-label mt-4">Password</label>
+            <input
+                type="password"
+                name="password"
+                class="form-control"
+                [ngClass]="{'is-invalid': ((password.errors?.required && password.dirty) || (password.errors?.minlength || password.errors?.maxlength)) }"
+                required
+                minlength="4"
+                maxlength="20"
+                #password="ngModel"
+                [ngModel]="detail?.password">
+            <div *ngIf="password.errors?.required && password.dirty" class="invalid-feedback">
+                Transaction password is required!
+            </div>
+            <div *ngIf="password.errors?.minlength || password.errors?.maxlength" class="invalid-feedback">
+                <div>The password should have at least 4 symbols.</div>
+                <div>The maximum number of symbols is 20.</div>
+            </div>
+        </div>
+    </div>
+    <div class="text-danger">{{ infoError }}</div>
+
+    <div class="form-group">
+        <button
+            type="submit"
+            class="btn btn-primary mt-4"
+            [disabled]="signInForm.invalid">
+            <span>
+                Transaction review
+            </span>
+        </button>
+    </div>
+
+    </fieldset>
+</form>
+</div>

@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { TransactionSubmitService } from "../../transaction-submit.service";
-import { UserRegistrationInterface } from "../../models/user-registration.interface";
+import { UserService } from "../../user.service";
+import { UserRegisterInterface } from "../../models/user-register.interface";
 import { UserResponseInterface } from "../../models/user-response.interface";
 import { UserUrls } from "../../user-urls.component";
 
@@ -14,14 +14,14 @@ import { UserUrls } from "../../user-urls.component";
 })
 
 export class RegistrationComponent implements OnInit, OnDestroy {
-    registration: UserRegistrationInterface;
+    registration: UserRegisterInterface;
     registrationError: string = '';
     private ngUnsubscribe = new Subject();
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private transactionService: TransactionSubmitService
+        private transactionService: UserService
     ) {
     }
     
@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
         this.registrationError = '';
     }
 
-    onRegistration(event: UserRegistrationInterface) {
+    onRegistration(event: UserRegisterInterface) {
         this.transactionService
             .registration(event)
             .pipe(takeUntil(this.ngUnsubscribe))

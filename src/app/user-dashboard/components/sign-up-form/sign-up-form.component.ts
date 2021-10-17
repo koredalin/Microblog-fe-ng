@@ -1,20 +1,20 @@
 import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
-import { UserRegistrationInterface } from "../../models/user-registration.interface";
+import { UserRegisterInterface } from "../../models/user-register.interface";
 
 @Component({
-    selector: 'registration-form',
-    styleUrls: ['registration-form.component.scss'],
-    templateUrl: './registration-form.component.html'
+    selector: 'sign-up-form',
+    styleUrls: ['sign-up-form.component.scss'],
+    templateUrl: './sign-up-form.component.html'
 })
 
-export class RegistrationFormComponent implements OnInit {
+export class SignUpFormComponent implements OnInit {
     @Input()
-    detail: UserRegistrationInterface;
+    detail: UserRegisterInterface;
     @Input()
     registrationError: string = '';
 
     @Output()
-    update: EventEmitter<UserRegistrationInterface> = new EventEmitter<UserRegistrationInterface>();
+    update: EventEmitter<UserRegisterInterface> = new EventEmitter<UserRegisterInterface>();
 
     phoneNumberMask: string = '';
 
@@ -31,7 +31,7 @@ export class RegistrationFormComponent implements OnInit {
         this.registrationError = '';
     }
 
-    handleSubmit(transaction: UserRegistrationInterface, isValid: boolean | null) {
+    handleSubmit(transaction: UserRegisterInterface, isValid: boolean | null) {
         if (isValid) {
             this.update.emit(transaction);
         }

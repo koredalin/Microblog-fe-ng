@@ -1,0 +1,32 @@
+<h2>Micro blog. User view</h2>
+
+<div>
+    <div>
+        {{ userData | json }}
+    </div>
+
+    <span>
+        <button
+            class="btn btn-outline-info ml-3"
+            (click)="goBack()">
+            &lsaquo; Go back
+        </button>
+    </span>
+
+    <h3>Single User Info</h3>
+    <search-form
+        [detail]="userData"
+        [infoError]="infoError"
+        (update)="onGetInfo($event)">
+
+    </search-form>
+
+    <!-- {{ response | json }} -->
+
+    <user-display
+        [detail]="response"
+        [infoError]="infoError">
+
+    </user-display>
+
+</div>

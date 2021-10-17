@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
-import { TransactionSubmitService } from "../../transaction-submit.service";
+import { UserService } from "../../user.service";
 import { TransactionInfoInterface } from "../../models/transaction-info.interface";
 import { UserResponseInterface } from "../../models/user-response.interface";
 
@@ -14,14 +14,14 @@ import { UserResponseInterface } from "../../models/user-response.interface";
 
 
 export class ViewByIdComponent implements OnInit, OnDestroy {
-    infoError: string;
-    response: UserResponseInterface | null;
+    infoError: string = '';
+    response: UserResponseInterface | null = null;
     private ngUnsubscribe = new Subject();
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private transactionService: TransactionSubmitService
+        private transactionService: UserService
     ) {}
     
 
@@ -33,7 +33,7 @@ export class ViewByIdComponent implements OnInit, OnDestroy {
 
     setInfo() {
         this.transactionService
-            .getTransactionByUrlTransactionId()
+            .getUserByUrlUserId()
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {

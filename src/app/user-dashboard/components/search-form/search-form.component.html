@@ -1,0 +1,72 @@
+<div>
+    
+    <!-- {{ infoForm.value | json }} -->
+
+<form
+    (ngSubmit)="handleSubmit(infoForm.value, infoForm.valid)"
+    #infoForm="ngForm"
+    novalidate>
+
+    <fieldset>
+
+    <div class="form-group">
+
+        <div id="userName">
+            <div class="form-group">
+                <label for="firstName" class="form-label mt-4">First name</label>
+                <input
+                    type="text"
+                    name="firstName"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': (firstName.errors?.required && firstName.dirty) }"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    #firstName="ngModel"
+                    [(ngModel)]="detail.firstName">
+                <div *ngIf="firstName.errors?.required && firstName.dirty" class="invalid-feedback">
+                    User's first name is required!
+                </div>
+                <div *ngIf="firstName.errors?.minlength || firstName.errors?.maxlength" class="invalid-feedback">
+                    <div>Last name should have at least 3 symbols.</div>
+                    <div>The maximum number of symbols is 60.</div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="lastName" class="form-label mt-4">Last name</label>
+                <input
+                    type="text"
+                    name="lastName"
+                    class="form-control"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    #lastName="ngModel"
+                    [(ngModel)]="detail.lastName">
+                <div *ngIf="lastName.errors?.required && lastName.dirty" class="invalid-feedback">
+                    User's first name is required!
+                </div>
+                <div *ngIf="lastName.errors?.minlength || lastName.errors?.maxlength" class="invalid-feedback">
+                    <div>Last name should have at least 3 symbols.</div>
+                    <div>The maximum number of symbols is 60.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-danger">{{ infoError }}</div>
+
+    <div class="form-group">
+        <button
+            type="submit"
+            class="btn btn-primary mt-4"
+            [disabled]="infoForm.invalid">
+            <span>
+                Transaction review
+            </span>
+        </button>
+    </div>
+
+    </fieldset>
+</form>
+</div>

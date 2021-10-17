@@ -8,18 +8,18 @@ import { NgxMaskModule, IConfig } from "ngx-mask";
 // Containers
 
 // Components
-import { TransactionSubmitComponent } from "./containers/transaction-submit/transaction-submit.component";
+import { TransactionSubmitComponent } from "./containers/user-submit/user-submit.component";
 import { RegistrationComponent } from "./containers/registration/registration.component";
-import { RegistrationFormComponent } from "./components/registration-form/registration-form.component";
+import { SignUpFormComponent } from "./components/sign-up-form/sign-up-form.component";
 import { ConfirmationComponent } from "./containers/confirmation/confirmation.component";
 import { ConfirmationFormComponent } from "./components/confirmation-form/confirmation-form.component";
-import { InfoComponent } from "./containers/info/info.component";
-import { InfoFormComponent } from "./components/info-form/info-form.component";
-import { InfoByIdComponent } from "./containers/info-by-id/info-by-id.component";
-import { InfoViewerComponent } from "./components/info-viewer/info-viewer.component";
+import { ViewComponent } from "./containers/view/view.component";
+import { SearchFormComponent } from "./components/search-form/search-form.component";
+import { ViewByIdComponent } from "./containers/view-by-id/view-by-id.component";
+import { InfoDisplayComponent } from "./components/user-display/user-display.component";
 
 // Services
-import { TransactionSubmitService } from "./transaction-submit.service";
+import { UserService } from "./user.service";
 
 const maskConfig: Partial<IConfig> = {
     validation: false
@@ -43,11 +43,11 @@ const routes = [
             },
             {
                 path: 'info',
-                component: InfoComponent
+                component: ViewComponent
             },
             {
                 path: 'info/:transactionId',
-                component: InfoByIdComponent
+                component: ViewByIdComponent
             },
             // {
             //     path: 'view/:id',
@@ -62,14 +62,14 @@ const routes = [
         // Containers
         RegistrationComponent,
         ConfirmationComponent,
-        InfoComponent,
-        InfoByIdComponent,
+        ViewComponent,
+        ViewByIdComponent,
         // Components
         // TransactionDetailComponent,
-        RegistrationFormComponent,
+        SignUpFormComponent,
         ConfirmationFormComponent,
-        InfoFormComponent,
-        InfoViewerComponent
+        SearchFormComponent,
+        InfoDisplayComponent
     ],
     imports: [
         CommonModule,
@@ -79,8 +79,8 @@ const routes = [
         RouterModule.forChild(routes)
     ],
     providers: [
-        TransactionSubmitService
+        UserService
     ]
 })
 
-export class TransactionSubmitModule {}
+export class UserModule {}
