@@ -32,17 +32,21 @@ export class UserNavigationComponent {
     
 
     deleteUser() {
-        this.userService
-            .deleteUser()
-            .pipe(takeUntil(this.ngUnsubscribe))
-            .subscribe(
-                (responseContent: UserResponseInterface) => {
-                    this.router.navigate([UserUrls.HOME]);
-                },
-                (error) => {
-                  this.deleteError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
-                }
-            );
+        if (confirm('You and your posts will be deleted. Are you sure?!?')) {
+            this.userService
+                .deleteUser()
+                .pipe(takeUntil(this.ngUnsubscribe))
+                .subscribe(
+                    (responseContent: UserResponseInterface) => {
+                        localStorage.setItem('loggedUserId', '0');
+                        localStorage.setItem('bearerToken', '');
+                        this.router.navigate([UserUrls.HOME]);
+                    },
+                    (error) => {
+                    this.deleteError = error?.error?.arguments.errors || (JSON.stringify(error || 'UNKNOWN ERROR'));
+                    }
+                );
+        }
     }
     
     ngOnDestroy() {

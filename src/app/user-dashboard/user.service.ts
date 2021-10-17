@@ -10,7 +10,7 @@ import { UserSearchByNameInterface } from "./models/user-search-by-name.interfac
 // API links
 const MICRO_BLOG_API = 'http://localhost/microblog/public/api';
 const API_USERS = '/v1/user';
-const API_USER_REGISTRATION = API_USERS + '/v1/user/register';
+const API_USER_REGISTRATION = API_USERS + '/register';
 const API_SIGN_IN = API_USERS + '/login';
 const API_USER_BY_NAME = API_USERS + '/v1/user-by-name';
 const API_USER_DELETE = API_USERS;
