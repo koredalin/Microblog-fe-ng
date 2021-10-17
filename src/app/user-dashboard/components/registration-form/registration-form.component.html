@@ -1,0 +1,111 @@
+<h3>Transaction Registration</h3>
+<div>
+    
+    {{ registrationForm.value | json }}
+
+<form
+    (ngSubmit)="handleSubmit(registrationForm.value, registrationForm.valid)"
+    #registrationForm="ngForm"
+    novalidate>
+
+    <fieldset>
+
+        <div id="userName">
+            <div class="form-group">
+                <label for="firstName" class="form-label mt-4">First name</label>
+                <input
+                    type="text"
+                    name="firstName"
+                    class="form-control"
+                    [ngClass]="{'is-invalid': (firstName.errors?.required && firstName.dirty) }"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    #firstName="ngModel"
+                    [(ngModel)]="detail.firstName">
+                <div *ngIf="firstName.errors?.required && firstName.dirty" class="invalid-feedback">
+                    User's first name is required!
+                </div>
+                <div *ngIf="firstName.errors?.minlength || firstName.errors?.maxlength" class="invalid-feedback">
+                    <div>Last name should have at least 3 symbols.</div>
+                    <div>The maximum number of symbols is 60.</div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="lastName" class="form-label mt-4">Last name</label>
+                <input
+                    type="text"
+                    name="lastName"
+                    class="form-control"
+                    required
+                    minlength="3"
+                    maxlength="60"
+                    #lastName="ngModel"
+                    [(ngModel)]="detail.lastName">
+                <div *ngIf="lastName.errors?.required && lastName.dirty" class="invalid-feedback">
+                    User's first name is required!
+                </div>
+                <div *ngIf="lastName.errors?.minlength || lastName.errors?.maxlength" class="invalid-feedback">
+                    <div>Last name should have at least 3 symbols.</div>
+                    <div>The maximum number of symbols is 60.</div>
+                </div>
+            </div>
+        </div>
+
+    <div class="form-group">
+        <label for="email" class="form-label mt-4">Email address</label>
+        <input
+            type="email"
+            name="email"
+            class="form-control"
+            [ngClass]="{'is-invalid': ((email.errors?.required && email.dirty) || (email.errors?.pattern)) }"
+            required
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            #email="ngModel"
+            [ngModel]="detail?.email">
+        <div *ngIf="email.errors?.required && email.dirty" class="invalid-feedback">
+            Transaction email is required!
+        </div>
+        <div *ngIf="email.errors?.pattern" class="invalid-feedback">
+            Please, enter a valid email address!
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password" class="form-label mt-4">Password</label>
+        <input
+            type="password"
+            name="password"
+            class="form-control"
+            [ngClass]="{'is-invalid': ((password.errors?.required && password.dirty) || (password.errors?.minlength || password.errors?.maxlength)) }"
+            required
+            minlength="4"
+            maxlength="20"
+            #password="ngModel"
+            [ngModel]="detail?.password">
+        <div *ngIf="password.errors?.required && password.dirty" class="invalid-feedback">
+            Transaction password is required!
+        </div>
+        <div *ngIf="password.errors?.minlength || password.errors?.maxlength" class="invalid-feedback">
+            <div>The password should have at least 4 symbols.</div>
+            <div>The maximum number of symbols is 20.</div>
+        </div>
+    </div>
+    <div class="text-danger">{{ registrationError }}</div>
+
+    <div class="form-group">
+    <button
+        type="submit"
+        class="btn btn-primary mt-4"
+        [disabled]="registrationForm.invalid">
+
+        <span>
+            Create transaction
+        </span>
+        
+    </button>
+    </div>
+    </fieldset>
+</form>
+</div>

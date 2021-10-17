@@ -1,0 +1,40 @@
+<h2>One Time Password (OTP)</h2>
+
+<div>
+    <div>
+        {{ transactionInfo | json }}
+    </div>
+
+    <span>
+        <button
+            class="btn btn-outline-info ml-3"
+            (click)="goBack()">
+            &lsaquo; Go back
+        </button>
+    </span>
+
+    <h3>Single Transaction Info</h3>
+    <info-form
+        [detail]="transactionInfo"
+        [infoError]="infoError"
+        (update)="onGetInfo($event)">
+
+    </info-form>
+
+    <!-- {{ response | json }} -->
+
+    <info-viewer
+        [detail]="response"
+        [infoError]="infoError">
+
+    </info-viewer>
+
+    <span *ngIf="showConfirmationLink">
+        <button
+            class="btn btn-outline-info ml-3"
+            (click)="goToConfirmation()">
+            &lsaquo; Confirm the transaction
+        </button>
+    </span>
+
+</div>

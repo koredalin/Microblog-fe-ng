@@ -1,0 +1,53 @@
+<h3>Transaction Confirmation</h3>
+<div>
+<form
+    (ngSubmit)="handleSubmit(form.value, form.valid)"
+    #form="ngForm"
+    novalidate>
+
+    <fieldset>
+
+    <div class="form-group">
+        <label for="confirmationCode" class="form-label mt-4">Transaction confirmation code</label>
+        <input
+            type="text"
+            name="confirmationCode"
+            class="form-control"
+            [ngClass]="{'is-invalid': (
+                    (confirmationCode.errors?.required && confirmationCode.dirty)
+                    || (confirmationCode.errors?.minlength || confirmationCode.errors?.maxlength)
+                    || (confirmationCode.errors?.pattern)
+                )
+            }"
+            required
+            minlength="6"
+            maxlength="10"
+            pattern="^[0-9]+$"
+            #confirmationCode="ngModel"
+            [ngModel]="detail?.confirmationCode">
+        <div *ngIf="confirmationCode.errors?.required && confirmationCode.dirty" class="invalid-feedback">
+            Transaction confirmation code is required!
+        </div>
+        <div *ngIf="(confirmationCode.errors?.minlength || confirmationCode.errors?.maxlength)" class="invalid-feedback">
+            Transaction confirmation code should be between 6 and 10 characters!
+        </div>
+        <div *ngIf="confirmationCode.errors?.pattern" class="invalid-feedback">
+            Transaction confirmation code should be an integer number!
+        </div>
+    </div>
+    <div class="text-danger">{{ confirmationError }}</div>
+
+    <div class="form-group">
+        <button
+            type="submit"
+            class="btn btn-primary mt-4"
+            [disabled]="form.invalid">
+            <span>
+                Confirm the code
+            </span>
+        </button>
+    </div>
+
+    </fieldset>
+</form>
+</div>

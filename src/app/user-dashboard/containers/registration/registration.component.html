@@ -1,0 +1,21 @@
+<h2>One Time Password (OTP)</h2>
+
+<div>
+    <div>
+        {{ registration | json }}
+        <div class="red">{{ registrationError }}</div>
+    </div>
+
+    <button
+        class="btn btn-outline-info"
+        (click)="goBack()">
+        &lsaquo; Go back
+    </button>
+
+    <registration-form
+        [detail]="registration"
+        [registrationError]="registrationError"
+        (update)="onRegistration($event)">
+
+    </registration-form>
+</div>

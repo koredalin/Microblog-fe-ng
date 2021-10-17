@@ -1,0 +1,22 @@
+<h2>One Time Password (OTP)</h2>
+
+<div>
+
+    <span>
+        <button
+            class="btn btn-outline-info ml-3"
+            (click)="goBack()">
+            &lsaquo; Go back
+        </button>
+    </span>
+
+    <h3>Single Transaction Info</h3>
+    <info-viewer
+        [detail]="response"
+        [infoError]="infoError">
+
+    </info-viewer>
+
+    <!-- {{ response | json }} -->
+
+</div>
