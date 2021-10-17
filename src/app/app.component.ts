@@ -4,7 +4,7 @@ import { NavigationEnd} from '@angular/router';
 
   
 const URL_PATH_TITLES: { [key: string]: string } = {
-  "transactions": "Transactions",
+  "post": "Posts",
   "user": "Users",
   "registration": "Registration",
   "confirmation": "Confirmation",
@@ -40,8 +40,8 @@ export class AppComponent implements OnInit{
         "exact": true
     },
     {
-        "link": '/transactions',
-        "name": 'Transactions',
+        "link": '/post',
+        "name": 'Posts',
         "exact": true
     },
     {

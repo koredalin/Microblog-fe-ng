@@ -50,10 +50,6 @@ const routes = [
                 path: UserUrls.VIEW.substr(1) + '/:id',
                 component: ViewByIdComponent
             },
-            // {
-            //     path: 'view/:id',
-            //     component: TransactionViewerComponent
-            // },
         ]
     }
 ];

@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
 import { NotFoundComponent } from './not-found.component';
-import { TransactionDashboardModule } from './transaction-dashboard/transaction-dashboard.module'
+import { PostDashboardModule } from './transaction-dashboard/post-dashboard.module'
 import { UserModule } from './user-dashboard/user.module';
 
 const routes: Routes = [
@@ -29,7 +29,7 @@ const routes: Routes = [
     // AppRoutingModule
     RouterModule.forRoot(routes),
     // Custom modules
-    TransactionDashboardModule,
+    PostDashboardModule,
     UserModule
   ],
   providers: [],
