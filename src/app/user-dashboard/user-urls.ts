@@ -3,4 +3,5 @@ export class UserUrls {
     public static REGISTRATION = '/registration';
     public static LOGIN = '/login';
     public static VIEW = '/view';
+    public static SEARCH = '/search';
 }

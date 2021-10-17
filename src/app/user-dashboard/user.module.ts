@@ -34,7 +34,7 @@ const routes = [
                 component: UserNavigationComponent
             },
             {
-                path: 'registration',
+                path: 'register',
                 component: RegistrationComponent
             },
             {
@@ -42,7 +42,7 @@ const routes = [
                 component: SignInComponent
             },
             {
-                path: 'view',
+                path: 'search',
                 component: ViewComponent
             },
             {

@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
                 (responseContent: UserResponseInterface) => {
-                    this.router.navigate([UserUrls.HOME+UserUrls.REGISTRATION]);
+                    this.router.navigate([UserUrls.HOME+UserUrls.LOGIN]);
                     //this.transaction = Object.assign({}, this.transaction, data);
                 },
                 (error) => {

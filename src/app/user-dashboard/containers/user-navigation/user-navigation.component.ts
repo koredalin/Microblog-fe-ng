@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
 import { UserUrls } from "../../user-urls";
 import { AppUrls } from "src/app/app-urls.component";
 
@@ -11,27 +10,10 @@ import { AppUrls } from "src/app/app-urls.component";
 
 
 export class UserNavigationComponent {
-    constructor(
-        private router: Router
-    ) {}
+    registrationUrl: string = UserUrls.HOME + UserUrls.REGISTRATION;
+    userLoginUrl: string = UserUrls.HOME + UserUrls.LOGIN;
+    userSearchUrl: string = UserUrls.HOME + UserUrls.SEARCH;
+    goBackUrl: string = AppUrls.HOME;
 
-    goToUserCreate() {
-        this.router.navigate([UserUrls.HOME + UserUrls.REGISTRATION]);
-    }
-
-    goToUserLogin() {
-        this.router.navigate([UserUrls.HOME + UserUrls.LOGIN]);
-    }
-
-    goToUserView() {
-        this.router.navigate([UserUrls.HOME + UserUrls.VIEW]);
-    }
-
-    // handleView(event: TransactionInterface) {
-    //     this.router.navigate(['/transactions', event.id]);
-    // }
-
-    goBack() {
-        this.router.navigate([AppUrls.TRANSACTIONS_HOME]);
-    }
+    constructor() {}
 }

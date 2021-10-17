@@ -29,9 +29,9 @@ interface Nav {
 
 export class AppComponent implements OnInit{
   title = 'phone-validator-fe-ng-scss Rendering flow';
-  currentUrl: string;
-  currentUrlArr: Array<string>;
-  breadCrumbHref: string;
+  currentUrl: string = '';
+  currentUrlArr: Array<string> = [];
+  breadCrumbHref: string = '';
 
   nav: Nav[] = [
     {
@@ -45,15 +45,15 @@ export class AppComponent implements OnInit{
         "exact": true
     },
     {
-        "link": '/transaction-submit',
-        "name": 'Transaction Submit',
+        "link": '/user',
+        "name": 'Users',
         "exact": true
     },
-    {
-        "link": '/oops',
-        "name": '404',
-        "exact": false
-    },
+    // {
+    //     "link": '/oops',
+    //     "name": '404',
+    //     "exact": false
+    // },
   ];
 
   constructor(

@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TransactionInterface } from "../../models/transaction.interface";
 import { TransactionDashboardService } from "../../transaction-dashboard.service";
-import { TransactionSubmitUrls } from "src/app/transaction-submit/transaction-submit-urls.component";
-import { TransactionDashboardUrls } from "../../transaction-dashboard-urls.component";
+import { UserUrls } from "src/app/user-dashboard/user-urls";
 
 @Component({
     selector: 'transaction-dashboard',
@@ -15,7 +14,7 @@ import { TransactionDashboardUrls } from "../../transaction-dashboard-urls.compo
 export class TransactionDashboardComponent implements OnInit {
     transactions: TransactionInterface[] = [];
     links = {
-        transactionSubmitHome: TransactionSubmitUrls.HOME
+        userHome: UserUrls.HOME
     };
 
     constructor(

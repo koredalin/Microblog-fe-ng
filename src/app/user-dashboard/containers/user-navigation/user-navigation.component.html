@@ -1,28 +1,24 @@
-<h2>One Time Password (OTP)</h2>
-<h3>Transaction Submit menu</h3>
+<h2>Micro blog</h2>
+<h3>User links menu</h3>
 
 <div class="app">
 
-    <button
-        type="button"
-        (click)="goToUserCreate()">
-        Create transaction
-    </button>
+    <ul id="user_links_menu">
+        <li>
+            <a href="{{registrationUrl}}">User create</a>
+        </li>
 
-    <button
-        type="button"
-        (click)="goToUserLogin()">
-        Create transaction
-    </button>
+        <li>
+            <a href="{{userLoginUrl}}">User login</a>
+        </li>
 
-    <button
-        type="button"
-        (click)="goToUserView()">
-        Transaction Info
-    </button>
+        
+        <li>
+            <a href="{{userSearchUrl}}">User search</a>
+        </li>
 
-    <button
-        (click)="goBack()">
-        &lsaquo; Go back
-    </button>
+        <li>
+            <a href="{{goBackUrl}}">&lsaquo; Go back</a>
+        </li>
+    </ul>
 </div>
