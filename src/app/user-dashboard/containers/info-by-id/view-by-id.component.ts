@@ -4,18 +4,18 @@ import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { TransactionSubmitService } from "../../transaction-submit.service";
 import { TransactionInfoInterface } from "../../models/transaction-info.interface";
-import { ResponseInterface } from "../../models/response.interface";
+import { UserResponseInterface } from "../../models/user-response.interface";
 
 @Component({
-    selector: 'info-by-id',
+    selector: 'view-by-id',
     styleUrls: [],
-    templateUrl: './info-by-id.component.html'
+    templateUrl: './view-by-id.component.html'
 })
 
 
-export class InfoByIdComponent implements OnInit, OnDestroy {
+export class ViewByIdComponent implements OnInit, OnDestroy {
     infoError: string;
-    response: ResponseInterface | null;
+    response: UserResponseInterface | null;
     private ngUnsubscribe = new Subject();
 
     constructor(
@@ -36,7 +36,7 @@ export class InfoByIdComponent implements OnInit, OnDestroy {
             .getTransactionByUrlTransactionId()
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
-                (responseContent: ResponseInterface) => {
+                (responseContent: UserResponseInterface) => {
                     console.log(responseContent);
                     this.response = responseContent;
                 },

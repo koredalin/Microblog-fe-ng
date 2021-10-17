@@ -4,9 +4,9 @@ import { UserUrls } from "../../user-urls.component";
 import { AppUrls } from "src/app/app-urls.component";
 
 @Component({
-    selector: 'transaction-submit',
+    selector: 'user-submit',
     styleUrls: [],
-    templateUrl: './transaction-submit.component.html'
+    templateUrl: './user-submit.component.html'
 })
 
 
@@ -15,11 +15,11 @@ export class TransactionSubmitComponent {
         private router: Router
     ) {}
 
-    goToCreateTransaction() {
+    goToUserCreate() {
         this.router.navigate([UserUrls.HOME + UserUrls.REGISTRATION]);
     }
 
-    goToTransactionInfo() {
+    goToUserView() {
         this.router.navigate([UserUrls.HOME + UserUrls.VIEW]);
     }
 

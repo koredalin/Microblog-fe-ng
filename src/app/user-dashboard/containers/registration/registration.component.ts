@@ -4,7 +4,7 @@ import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { TransactionSubmitService } from "../../transaction-submit.service";
 import { UserRegistrationInterface } from "../../models/user-registration.interface";
-import { ResponseInterface } from "../../models/response.interface";
+import { UserResponseInterface } from "../../models/user-response.interface";
 import { UserUrls } from "../../user-urls.component";
 
 @Component({
@@ -15,7 +15,7 @@ import { UserUrls } from "../../user-urls.component";
 
 export class RegistrationComponent implements OnInit, OnDestroy {
     registration: UserRegistrationInterface;
-    registrationError: string;
+    registrationError: string = '';
     private ngUnsubscribe = new Subject();
 
     constructor(
@@ -35,8 +35,8 @@ export class RegistrationComponent implements OnInit, OnDestroy {
             .registration(event)
             .pipe(takeUntil(this.ngUnsubscribe))
             .subscribe(
-                (responseContent: ResponseInterface) => {
-                    this.router.navigate([UserUrls.HOME+UserUrls.LOGIN+'/'+(responseContent.response.transactionId || '')]);
+                (responseContent: UserResponseInterface) => {
+                    this.router.navigate([UserUrls.HOME+UserUrls.LOGIN+'/'+(responseContent.response.user_id || '')]);
                     //this.transaction = Object.assign({}, this.transaction, data);
                 },
                 (error) => {
