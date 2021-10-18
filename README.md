@@ -19,4 +19,4 @@ Please, review and the [back end PHP Rest API](https://github.com/koredalin/Micr
 DOCUMENTATION
 -------------
 
-* [Roadmap](https://github.com/koredalin/Microblog-fe-ng/common/docs/roadmap.md)
+* [Roadmap](https://github.com/koredalin/Microblog-fe-ng/blob/master/common/docs/roadmap.md)
